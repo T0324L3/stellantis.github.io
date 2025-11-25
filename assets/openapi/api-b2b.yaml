@@ -1982,6 +1982,27 @@ components:
                     nextDelayedTime:
                       description:  Duration (as defined in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)) until the next battery charging.
                       type: string
+                    chargingEndTime:
+                      description:  Timestamp (as defined in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)) of when the charging should end  
+                      type: string                        
+                    stopChargeStatus:
+                       type: string
+                       description: | 
+                                   Status of delayed stop charge.
+                                   one of following enums status will be set:
+                                      | Enum | Description |
+                                      |----------|:-------------:|
+                                      | Deactivated | Function is deactivated |
+                                      | Activated | The function is activated, and the conditions to execute it are met. |
+                                      | Successful | The most recent stop charge was successful. |
+                                      | StopChargeFailed | Failed to stop charging. |
+                                      | ChargeEndTimeScheduleFailed| The programming of the end of charge failed; the charging should not stop at the requested time. |
+                       enum:
+                          - Deactivated
+                          - Activated
+                          - Successful
+                          - StopChargeFailed
+                          - ChargeEndTimeScheduleFailed  
                     schedule:
                         properties:
                           programs:
