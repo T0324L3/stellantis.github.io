@@ -4342,10 +4342,7 @@ components:
                                       example : PT14H30M                              
                     immediate:
                       type: boolean
-                      deprecated: true
-                      description :  |
-                              Determines if the charging will start immediately(```True```) or not.
-                              * depricated: please use schedule.immediate action instead.
+                      description :  Determines if the charging will start immediately(```true```) or not.
                     preferences: 
                       description: Set the charging preferences.
                       type: object
