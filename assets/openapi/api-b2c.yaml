@@ -4310,6 +4310,12 @@ components:
                         nextDelayedTime:
                           type: string                        
                           description:  Timestamp (as defined in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)) of the next battery charging time.
+                        chargingEndTime:
+                          type: string                        
+                          description:  Timestamp (as defined in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)) of when the charging should end
+                        chargingEndTimeEnabled:
+                          type: boolean                        
+                          description: Enable or disable the programmed charge end time.
                         programs:
                           description: Scheduled charging programs list.
                           type: array
