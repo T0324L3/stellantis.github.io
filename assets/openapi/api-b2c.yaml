@@ -4287,7 +4287,25 @@ components:
                       type: string
                     schedule:
                       type: object
-                      description: Charge scheduling. Only one of the two modes, programs or nexDelayedTime, should be provided.
+                      description: | 
+                          Charge scheduling: only one of the three modes, ```programs```, ```nextDelayedTime/immediate```, or ```chargingEndTime/chargingEndTimeEnabled```, should be provided.
+                          * ```chargingEndTimeEnabled ```and ```chargingEndTime``` Can be used together to set the end time.
+                          * ```nextDelayedTime``` and ```immediate``` cannot be used together and are mutually exclusive. Mixing them will result in an error (HTTP 400).
+                          Here are the possible combinations of start and end times with their respective settings: immediate start and end time enable toggle.
+                          * ```nextDelayedTime``` and ```immediate```
+                              | <b>nextDelayedTime</b> | <b> immediate</b> |<b> allowed</b> |
+                              | :------------------: | :-------------------: | :-------------------: |
+                              | set |not set|yes | 
+                              | set |set to true/false|no |                               
+                              | not set |set to true/false |yes |                               
+                         
+                          * ```chargingEndTime``` and ```chargingEndTimeEnabled```
+                              | <b>chargingEndTime</b> | <b> chargingEndTimeEnabled</b> |<b> allowed</b> |
+                              | :------------------: | :-------------------: | :-------------------: |
+                              | set |not set|yes | 
+                              | set |set to true / false|yes |                               
+                              | not set |set to true/false  |Yes, if the chargingEndTime has been set before; otherwise, it will raise an error (HTTP 400)|   
+                          * General rule: An empty schedule object will result in an error (HTTP 400).
                       properties:
                         nextDelayedTime:
                           type: string                        
